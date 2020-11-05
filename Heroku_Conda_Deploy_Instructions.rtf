@@ -1,0 +1,66 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fmodern\fcharset0 Courier;\f2\froman\fcharset0 Times-Italic;
+\f3\fmodern\fcharset0 Courier-Oblique;\f4\froman\fcharset0 Times-BoldItalic;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\margl1440\margr1440\vieww18120\viewh13440\viewkind0
+\deftab720
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f0\fs24 \cf2 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Install 
+\f1 gunicorn
+\f0  as your web-server. 
+\f2\i ( Since, you are using conda environment gunicorn is not currently available at any conda channels to install. So, use 
+\f3 pip install gunicorn
+\f2  )
+\f0\i0  \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Add 
+\f1 requirements.txt
+\f0  file to your project's base directory and inside it add the modules names along with it versions or simply copy the contents that you get after you run 
+\f1 pip freeze
+\f0  command. \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Make a new file: 
+\f1 Procfile
+\f0  & inside it add the following:\uc0\u8232 web: gunicorn [Project_name].wsgi --log-file - \u8232 (Here 
+\f1 [Project_name]
+\f0  is your own project's directory name) \uc0\u8232 This says to use your existing [Project_name].wsgi file but with gunicorn.\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Make just a single change to 
+\f1 settings.py
+\f0  file:\uc0\u8232 ALLOWED_HOSTS = ['*']\u8232 ( The wildcard Asterisk * means all domains are acceptable to keep things simple. )\u8232 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f4\i\b \cf2 Now finally you can deploy using these steps:
+\f0\i0\b0 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls2\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a new app on Heroku: On CLI type 
+\f1 heroku create
+\f0 \uc0\u8232 (Heroku will create a random name for your app; [your_app_name])\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Add a git remote \'93hook\'94 for Heroku:\uc0\u8232 heroku git:remote -a [your_app_name]\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Ignore static files:\uc0\u8232 heroku config:set DISABLE_COLLECTSTATIC=1\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Push our code to Heroku:\uc0\u8232 git push heroku master\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Finally, make your Heroku app live:\uc0\u8232 heroku ps:scale web=1\u8232 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf2 ( Here, 
+\f1 web=1
+\f0  for basic Heroku services )\
+To open your app: 
+\f1 heroku open
+\f0 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f4\i\b \cf2 Your app should now be live on Heroku
+\f0\i0\b0 . \
+}
